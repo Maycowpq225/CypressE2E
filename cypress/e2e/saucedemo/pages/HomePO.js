@@ -1,12 +1,10 @@
+const elements = {
+    lblTitleProducts: () => cy.contains('Products')
+}
+
 class HomePO {
-
-    lblTitleProducts () {
-        return cy.contains('Products')
-    }
-
     validateTitleProducts () {
-        this.lblTitleProducts().should('be.visible')
+        elements.lblTitleProducts().should('be.visible')
     }
-
 }
 export default HomePO
