@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/e2e/saucedemo/**/*.{js,ts}"
+    "stepDefinitions": "cypress/e2e/***/**/*.{js,ts}"
   },
   "dependencies": {
     "cypress": "^13.3.3"
