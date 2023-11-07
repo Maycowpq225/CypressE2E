@@ -6,11 +6,6 @@ import RequestManager from '../utils/RequestManager'
 const barrigaOnboardingServices = new BarrigaOnboardingServices();
 const person = new Person();
 
-describe ('Rest Api Suite', () => {
-
-    let reqResponse: Cypress.Response<any>;
-    let requestManager;
-
     Given ('that is created a new person data', () => {
         console.log('nome:' + person.name);
         console.log('email:' + person.email);
@@ -30,7 +25,7 @@ describe ('Rest Api Suite', () => {
     //    console.log(jsonPath);
     //})
 
-})
+
 
 
 
