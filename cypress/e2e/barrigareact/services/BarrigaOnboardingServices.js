@@ -1,19 +1,19 @@
 import BaseService from './BaseService'
 
-const baseService = new BaseService('https://barrigarest.wcaquino.me');
-const registerAccount = '/usuarios';
+const baseService = new BaseService();
+const registerAccount = 'https://barrigarest.wcaquino.me/usuarios';
 
 class BarrigaOnboardingServices {
 
     registerNewAccount (person) {
-        const person = {
+        const personJson = {
             nome: person.name,
             email: person.email,
             senha: person.password,
             redirecionar: false,
           };
 
-          return baseService.doPostRequestWithBody(JSON.stringify(person), registerAccount);        
+          return baseService.doPostRequestWithBody(JSON.stringify(personJson), registerAccount);        
     }
 
 }
