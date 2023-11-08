@@ -1,32 +1,24 @@
 import { Given, When, Then} from "@badeball/cypress-cucumber-preprocessor"
-import Person from "../utils/Person"
 import BarrigaOnboardingServices from '../services/BarrigaOnboardingServices'
-import RequestManager from '../utils/RequestManager'
+import SharedInstance from '../utils/SharedInstance'
 
 const barrigaOnboardingServices = new BarrigaOnboardingServices();
-const person = new Person();
 
-    Given ('that is created a new person data', () => {
-        console.log('nome:' + person.name);
-        console.log('email:' + person.email);
-        console.log('password:' + person.password);
-    })
+Given ('that is created a new person data', () => {
+    SharedInstance.share().createNewPerson();
+})
 
-    When ('the new person is registered into barrigareact', () => {
-        barrigaOnboardingServices.registerNewAccount(person)
-                                    .then((response) => RequestManager.shared().setResponse(response));
-    })
+When ('the new person is registered into barrigareact', () => {
+    barrigaOnboardingServices.registerNewAccount(SharedInstance.share().getPerson())
+                                .then((response) => SharedInstance.share().setResponse(response));
+})
 
-    //Then ('the response code states should be {int}', (code: number) => {
-    //    expect(reqResponse.status).to.eq(code, "Response body contains correct status code")
-    //})
-
-    //Then ('the response body should contains the following json {string}', (jsonPath: string) => {
-    //    console.log(jsonPath);
-    //})
-
-
-
-
-
-
+Then ('the response body should contains the corrects json attributes', () => {
+    expect(SharedInstance.share().getResponse().body).to.have.property('id');
+    expect(SharedInstance.share().getResponse().body).to.have.property('nome');
+    expect(SharedInstance.share().getResponse().body).to.have.property('id_telegram');
+    expect(SharedInstance.share().getResponse().body).to.have.property('email');
+    expect(SharedInstance.share().getResponse().body).to.have.property('senha');
+    expect(SharedInstance.share().getResponse().body).to.have.property('created_at');
+    expect(SharedInstance.share().getResponse().body).to.have.property('updated_at');
+})
